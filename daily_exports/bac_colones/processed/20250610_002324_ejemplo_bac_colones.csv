@@ -1,0 +1,5 @@
+fecha,descripcion,monto,tipo,saldo
+2025-06-09,Deposito hotel huespedes,450000,credito,2850000
+2025-06-08,Pago proveedores,-125000,debito,2400000
+2025-06-07,Ingresos restaurante,85000,credito,2525000
+2025-06-06,Servicios bancarios,-15000,debito,2440000

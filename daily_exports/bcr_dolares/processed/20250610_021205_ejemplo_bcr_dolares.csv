@@ -1,0 +1,6 @@
+fecha,descripcion,monto,tipo,saldo
+2025-06-09,Deposito turistas USD,2500.00,credito,15800.00
+2025-06-08,Transferencia internacional,-850.00,debito,13300.00
+2025-06-07,Comision bancaria USD,-45.00,debito,14150.00
+2025-06-06,Ingreso reservas hotel,1200.00,credito,14195.00
+2025-06-05,Pago proveedores USA,-680.00,debito,12995.00

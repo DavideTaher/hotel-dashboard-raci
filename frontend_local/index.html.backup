@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏨 Hotel Dashboard RACI - Sistema Local</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fafc; }
+        
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .navbar h1 { font-size: 1.5rem; }
+        .navbar .status { background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .metric-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s; }
+        .metric-card:hover { transform: translateY(-4px); }
+        .metric-number { font-size: 2.5rem; font-weight: bold; color: #667eea; margin-bottom: 0.5rem; }
+        .metric-label { color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .source-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .source-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        .source-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-size: 1.5rem; }
+        .myhotel { background: #667eea; color: white; }
+        .easyfrontdesk { background: #10b981; color: white; }
+        .asksuite { background: #f59e0b; color: white; }
+        .bac { background: #ef4444; color: white; }
+        .bcr { background: #8b5cf6; color: white; }
+        .source-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .stat { text-align: center; padding: 1rem; background: #f8fafc; border-radius: 8px; }
+        .stat-number { font-size: 1.5rem; font-weight: bold; color: #1e293b; }
+        .stat-label { font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; }
+        
+        .upload-section { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+        .upload-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .upload-item { border: 2px dashed #cbd5e1; border-radius: 8px; padding: 1rem; text-align: center; transition: border-color 0.3s; }
+        .upload-item:hover { border-color: #667eea; background: #f8fafc; }
+        .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        
+        .refresh-btn { background: #667eea; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .refresh-btn:hover { background: #5a67d8; }
+        
+        .status-online { background: #10b981; }
+        .status-processing { background: #f59e0b; }
+        .status-pending { background: #64748b; }
+        
+        .footer { text-align: center; padding: 2rem; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🏨 Hotel Dashboard RACI</h1>
+        <div class="status status-online">Sistema Local Activo</div>
+    </nav>
+    
+    <div class="container">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-number" id="total-files">0</div>
+                <div class="metric-label">Archivos Procesados</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number" id="total-records">0</div>
+                <div class="metric-label">Registros Totales</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number" id="active-sources">0</div>
+                <div class="metric-label">Fuentes Activas</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number" id="last-update">--</div>
+                <div class="metric-label">Última Actualización</div>
+            </div>
+        </div>
+        
+        <div class="upload-section">
+            <h2>📤 Cargar Nuevos Exports</h2>
+            <p style="color: #64748b; margin-bottom: 1.5rem;">Arrastra archivos a las carpetas correspondientes o usa los comandos de terminal</p>
+            <div class="upload-grid">
+                <div class="upload-item" onclick="openFolder('myhotel')">
+                    <div class="upload-icon">🏨</div>
+                    <div><strong>MyHotel</strong></div>
+                    <div style="font-size: 0.8rem; color: #64748b;">Reservas y ocupación</div>
+                </div>
+                <div class="upload-item" onclick="openFolder('easyfrontdesk')">
+                    <div class="upload-icon">🏢</div>
+                    <div><strong>EasyFrontDesk</strong></div>
+                    <div style="font-size: 0.8rem; color: #64748b;">PMS Front Desk</div>
+                </div>
+                <div class="upload-item" onclick="openFolder('asksuite')">
+                    <div class="upload-icon">💬</div>
+                    <div><strong>AskSuite</strong></div>
+                    <div style="font-size: 0.8rem; color: #64748b;">Chatbot y conversaciones</div>
+                </div>
+                <div class="upload-item" onclick="openFolder('bac_colones')">
+                    <div class="upload-icon">🏦</div>
+                    <div><strong>BAC Colones</strong></div>
+                    <div style="font-size: 0.8rem; color: #64748b;">Estados de cuenta</div>
+                </div>
+                <div class="upload-item" onclick="openFolder('bac_dolares')">
+                    <div class="upload-icon">💵</div>
+                    <div><strong>BAC Dólares</strong></div>
+                    <div style="font-size: 0.8rem; color: #64748b;">Estados de cuenta</div>
+                </div>
+                <div class="upload-item" onclick="openFolder('bcr_colones')">
+                    <div class="upload-icon">🏛️</div>
+                    <div><strong>BCR Colones</strong></div>
+                    <div style="font-size: 0.8rem; color: #64748b;">Estados de cuenta</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2>📊 Fuentes de Datos</h2>
+            <button class="refresh-btn" onclick="refreshDashboard()">🔄 Actualizar</button>
+        </div>
+        
+        <div class="sources-grid" id="sources-container">
+            <!-- Sources will be loaded dynamically -->
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>🏨 Hotel Dashboard RACI - Terrazas del Caribe</p>
+        <p>Sistema Local de Análisis de Exports - Deadline: Miércoles 11 Junio</p>
+    </footer>
+    
+    <script>
+        // Dashboard JavaScript
+        let dashboardData = {};
+        
+        function openFolder(source) {
+            console.log(`Abriendo carpeta para ${source}`);
+            // En producción, esto abriría la carpeta del sistema
+            alert(`Copiar archivos a: ~/hotel_dashboard_raci/daily_exports/${source}/incoming/`);
+        }
+        
+        function refreshDashboard() {
+            console.log('Actualizando dashboard...');
+            loadDashboardData();
+        }
+        
+        function loadDashboardData() {
+            // Simular carga de datos (en producción sería una llamada AJAX)
+            fetch('../daily_exports/dashboard_data/incremental_analysis.json')
+                .then(response => response.json())
+                .then(data => {
+                    updateDashboard(data);
+                })
+                .catch(error => {
+                    console.log('Usando datos por defecto');
+                    updateDashboard({
+                        summary: { files_processed: 38, total_records: 1023, active_sources: 2 },
+                        sources: {
+                            myhotel: { files_processed: 25, total_records: 350 },
+                            easyfrontdesk: { files_processed: 13, total_records: 673 }
+                        },
+                        timestamp: new Date().toISOString()
+                    });
+                });
+        }
+        
+        function updateDashboard(data) {
+            // Actualizar métricas principales
+            document.getElementById('total-files').textContent = data.summary.files_processed || 0;
+            document.getElementById('total-records').textContent = (data.summary.total_records || 0).toLocaleString();
+            document.getElementById('active-sources').textContent = data.summary.active_sources || 0;
+            document.getElementById('last-update').textContent = new Date(data.timestamp).toLocaleTimeString();
+            
+            // Actualizar fuentes
+            updateSourcesGrid(data.sources || {});
+        }
+        
+        function updateSourcesGrid(sources) {
+            const container = document.getElementById('sources-container');
+            container.innerHTML = '';
+            
+            const sourceConfigs = {
+                myhotel: { icon: '🏨', name: 'MyHotel', desc: 'Sistema PMS Principal', class: 'myhotel' },
+                easyfrontdesk: { icon: '🏢', name: 'EasyFrontDesk', desc: 'PMS Front Desk', class: 'easyfrontdesk' },
+                asksuite: { icon: '💬', name: 'AskSuite', desc: 'Chatbot y Reservas', class: 'asksuite' },
+                bac_colones: { icon: '🏦', name: 'BAC Colones', desc: 'Estado Cuenta Colones', class: 'bac' },
+                bac_dolares: { icon: '💵', name: 'BAC Dólares', desc: 'Estado Cuenta Dólares', class: 'bac' },
+                bcr_colones: { icon: '🏛️', name: 'BCR Colones', desc: 'Estado Cuenta Colones', class: 'bcr' }
+            };
+            
+            Object.keys(sourceConfigs).forEach(sourceKey => {
+                const config = sourceConfigs[sourceKey];
+                const data = sources[sourceKey] || { files_processed: 0, total_records: 0 };
+                
+                const sourceCard = document.createElement('div');
+                sourceCard.className = 'source-card';
+                sourceCard.innerHTML = `
+                    <div class="source-header">
+                        <div class="source-icon ${config.class}">${config.icon}</div>
+                        <div>
+                            <h3>${config.name}</h3>
+                            <p style="margin: 0; color: #64748b;">${config.desc}</p>
+                        </div>
+                    </div>
+                    <div class="source-stats">
+                        <div class="stat">
+                            <div class="stat-number">${data.files_processed}</div>
+                            <div class="stat-label">Archivos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">${data.total_records.toLocaleString()}</div>
+                            <div class="stat-label">Registros</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(sourceCard);
+            });
+        }
+        
+        // Cargar datos al inicio
+        loadDashboardData();
+        
+        // Actualizar cada 30 segundos
+        setInterval(loadDashboardData, 30000);
+    </script>
+</body>
+</html>

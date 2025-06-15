@@ -1,0 +1,6 @@
+fecha,habitacion,huesped,estado,tarifa_colones,noches,pais,canal
+2025-06-09,101,Juan Perez,confirmada,85000,2,Costa Rica,Directo
+2025-06-09,102,Maria Garcia,check-in,95000,3,USA,Booking.com
+2025-06-09,201,Carlos Lopez,check-out,120000,1,Canada,Expedia
+2025-06-08,103,Ana Rodriguez,confirmada,75000,4,Costa Rica,Agencia
+2025-06-08,202,David Wilson,cancelada,110000,2,USA,Directo

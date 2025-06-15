@@ -1,0 +1,11 @@
+{
+  "name": "hotel-dashboard-raci",
+  "version": "1.0.0",
+  "description": "Hotel Dashboard RACI - Sistema Local",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8080",
+    "build": "echo 'Build local ready'",
+    "start": "open http://localhost:8080"
+  }
+}

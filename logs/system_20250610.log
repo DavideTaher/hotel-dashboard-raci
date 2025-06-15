@@ -1,0 +1,163 @@
+[2025-06-10 08:16:24] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:16:24] 📊 Iniciando dashboard local (puerto 8080)...
+[2025-06-10 08:16:26] ✅ Dashboard iniciado correctamente
+[2025-06-10 08:16:26] 📤 Iniciando upload server (puerto 5001)...
+[2025-06-10 08:16:28] ✅ Upload server iniciado correctamente
+[2025-06-10 08:16:28] 🤖 Verificando sistema de automatización...
+[2025-06-10 08:16:31] ✅ Sistema de automatización funcionando
+[2025-06-10 08:16:40] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 08:16:45] 🛑 DETENIENDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:16:45] ✅ Dashboard detenido
+[2025-06-10 08:16:45] ✅ Upload server detenido
+[2025-06-10 08:16:45] ✅ Procesos de automatización detenidos
+[2025-06-10 08:16:45] 🎯 TODOS LOS SERVICIOS DETENIDOS
+[2025-06-10 08:16:51] 🔄 REINICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:16:51] 🛑 DETENIENDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:16:51] ✅ Procesos de automatización detenidos
+[2025-06-10 08:16:51] 🎯 TODOS LOS SERVICIOS DETENIDOS
+[2025-06-10 08:16:53] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:16:53] 📊 Iniciando dashboard local (puerto 8080)...
+[2025-06-10 08:16:56] ❌ Error iniciando dashboard
+[2025-06-10 08:16:56] 📤 Iniciando upload server (puerto 5001)...
+[2025-06-10 08:16:58] ✅ Upload server iniciado correctamente
+[2025-06-10 08:16:58] 🤖 Verificando sistema de automatización...
+[2025-06-10 08:17:01] ❌ Error en sistema de automatización
+[2025-06-10 08:17:01] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 08:17:17] 🔄 REINICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:17:17] 🛑 DETENIENDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:17:17] ✅ Dashboard detenido
+[2025-06-10 08:17:17] ✅ Upload server detenido
+[2025-06-10 08:17:17] ✅ Procesos de automatización detenidos
+[2025-06-10 08:17:17] 🎯 TODOS LOS SERVICIOS DETENIDOS
+[2025-06-10 08:17:19] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 08:17:19] 📊 Iniciando dashboard local (puerto 8080)...
+[2025-06-10 08:17:21] ✅ Dashboard iniciado correctamente
+[2025-06-10 08:17:21] 📤 Iniciando upload server (puerto 5001)...
+[2025-06-10 08:17:23] ✅ Upload server iniciado correctamente
+[2025-06-10 08:17:23] 🤖 Verificando sistema de automatización...
+[2025-06-10 08:17:26] ❌ Error en sistema de automatización
+[2025-06-10 08:17:26] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 08:17:31] 💾 EJECUTANDO BACKUP COMPLETO
+[2025-06-10 08:17:31] ✅ Backup completado exitosamente
+[2025-06-10 08:17:39] 🧪 EJECUTANDO TESTING COMPLETO
+[2025-06-10 08:17:39] ✅ Archivo encontrado: automation_7x_system.py
+[2025-06-10 08:17:39] ✅ Archivo encontrado: auto_backup.sh
+[2025-06-10 08:17:39] ✅ Archivo encontrado: components_memory_system.sh
+[2025-06-10 08:17:39] 📁 Componentes encontrados:       10/10
+[2025-06-10 08:17:39] 🤖 Testing sistema de automatización...
+[2025-06-10 08:17:41] ✅ Sistema de automatización funcionando
+[2025-06-10 08:17:41] ✅ Configuración encontrada
+[2025-06-10 08:17:41] 🎯 TESTING COMPLETADO
+[2025-06-10 08:17:45] 🧪 EJECUTANDO TESTING COMPLETO
+[2025-06-10 08:17:45] ✅ Archivo encontrado: automation_7x_system.py
+[2025-06-10 08:17:45] ✅ Archivo encontrado: auto_backup.sh
+[2025-06-10 08:17:45] ✅ Archivo encontrado: components_memory_system.sh
+[2025-06-10 08:17:45] 📁 Componentes encontrados:       10/10
+[2025-06-10 08:17:45] 🤖 Testing sistema de automatización...
+[2025-06-10 08:17:47] ✅ Sistema de automatización funcionando
+[2025-06-10 08:17:47] ✅ Configuración encontrada
+[2025-06-10 08:17:47] 🎯 TESTING COMPLETADO
+[2025-06-10 08:18:04] 👋 Sistema de control finalizado
+[2025-06-10 13:08:02] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:08:03] 📊 Iniciando dashboard local (puerto 8080)...
+[2025-06-10 13:08:05] ✅ Dashboard iniciado correctamente
+[2025-06-10 13:08:05] 📤 Iniciando upload server (puerto 5001)...
+[2025-06-10 13:08:07] ✅ Upload server iniciado correctamente
+[2025-06-10 13:08:07] 🤖 Verificando sistema de automatización...
+[2025-06-10 13:08:10] ❌ Error en sistema de automatización
+[2025-06-10 13:08:10] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 13:08:49] 🧪 EJECUTANDO TESTING COMPLETO
+[2025-06-10 13:08:49] ✅ Archivo encontrado: automation_7x_system.py
+[2025-06-10 13:08:49] ✅ Archivo encontrado: auto_backup.sh
+[2025-06-10 13:08:49] ✅ Archivo encontrado: components_memory_system.sh
+[2025-06-10 13:08:49] 📁 Componentes encontrados:       10/10
+[2025-06-10 13:08:49] 🤖 Testing sistema de automatización...
+[2025-06-10 13:08:50] ✅ Sistema de automatización funcionando
+[2025-06-10 13:08:50] ✅ Configuración encontrada
+[2025-06-10 13:08:50] 🎯 TESTING COMPLETADO
+[2025-06-10 13:39:17] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:39:17] ✅ Dashboard ya está funcionando
+[2025-06-10 13:39:17] ✅ Upload server ya está funcionando
+[2025-06-10 13:39:17] 🤖 Verificando sistema de automatización...
+[2025-06-10 13:39:20] ❌ Error en sistema de automatización
+[2025-06-10 13:39:20] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 13:39:34] 🧪 EJECUTANDO TESTING COMPLETO
+[2025-06-10 13:39:34] ✅ Archivo encontrado: automation_7x_system.py
+[2025-06-10 13:39:34] ✅ Archivo encontrado: auto_backup.sh
+[2025-06-10 13:39:34] ✅ Archivo encontrado: components_memory_system.sh
+[2025-06-10 13:39:34] 📁 Componentes encontrados:       10/10
+[2025-06-10 13:39:34] 🤖 Testing sistema de automatización...
+[2025-06-10 13:39:35] ✅ Sistema de automatización funcionando
+[2025-06-10 13:39:36] ✅ Configuración encontrada
+[2025-06-10 13:39:36] 🎯 TESTING COMPLETADO
+[2025-06-10 13:39:45] 👋 Sistema de control finalizado
+[2025-06-10 13:45:23] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:45:23] ✅ Dashboard ya está funcionando
+[2025-06-10 13:45:23] ✅ Upload server ya está funcionando
+[2025-06-10 13:45:23] 🤖 Verificando sistema de automatización...
+[2025-06-10 13:45:26] ❌ Error en sistema de automatización
+[2025-06-10 13:45:26] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 13:45:29] 🛑 DETENIENDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:45:29] ✅ Dashboard detenido
+[2025-06-10 13:45:29] ✅ Upload server detenido
+[2025-06-10 13:45:29] ✅ Procesos de automatización detenidos
+[2025-06-10 13:45:29] 🎯 TODOS LOS SERVICIOS DETENIDOS
+[2025-06-10 13:45:34] 🔄 REINICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:45:34] 🛑 DETENIENDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:45:34] ✅ Procesos de automatización detenidos
+[2025-06-10 13:45:34] 🎯 TODOS LOS SERVICIOS DETENIDOS
+[2025-06-10 13:45:36] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:45:37] 📊 Iniciando dashboard local (puerto 8080)...
+[2025-06-10 13:45:39] ✅ Dashboard iniciado correctamente
+[2025-06-10 13:45:39] 📤 Iniciando upload server (puerto 5001)...
+[2025-06-10 13:45:41] ✅ Upload server iniciado correctamente
+[2025-06-10 13:45:41] 🤖 Verificando sistema de automatización...
+[2025-06-10 13:45:44] ❌ Error en sistema de automatización
+[2025-06-10 13:45:44] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 13:45:51] 💾 EJECUTANDO BACKUP COMPLETO
+[2025-06-10 13:45:52] ✅ Backup completado exitosamente
+[2025-06-10 13:45:59] 🧪 EJECUTANDO TESTING COMPLETO
+[2025-06-10 13:45:59] ✅ Archivo encontrado: automation_7x_system.py
+[2025-06-10 13:45:59] ✅ Archivo encontrado: auto_backup.sh
+[2025-06-10 13:45:59] ✅ Archivo encontrado: components_memory_system.sh
+[2025-06-10 13:45:59] 📁 Componentes encontrados:       10/10
+[2025-06-10 13:45:59] 🤖 Testing sistema de automatización...
+[2025-06-10 13:46:00] ✅ Sistema de automatización funcionando
+[2025-06-10 13:46:00] ✅ Configuración encontrada
+[2025-06-10 13:46:00] 🎯 TESTING COMPLETADO
+[2025-06-10 13:46:21] 👋 Sistema de control finalizado
+[2025-06-10 13:52:18] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:52:18] ✅ Dashboard ya está funcionando
+[2025-06-10 13:52:18] ✅ Upload server ya está funcionando
+[2025-06-10 13:52:18] 🤖 Verificando sistema de automatización...
+[2025-06-10 13:52:21] ❌ Error en sistema de automatización
+[2025-06-10 13:52:21] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 13:52:24] 🛑 DETENIENDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:52:24] ✅ Dashboard detenido
+[2025-06-10 13:52:24] ✅ Upload server detenido
+[2025-06-10 13:52:24] ✅ Procesos de automatización detenidos
+[2025-06-10 13:52:24] 🎯 TODOS LOS SERVICIOS DETENIDOS
+[2025-06-10 13:52:29] 🔄 REINICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:52:29] 🛑 DETENIENDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:52:29] ✅ Procesos de automatización detenidos
+[2025-06-10 13:52:29] 🎯 TODOS LOS SERVICIOS DETENIDOS
+[2025-06-10 13:52:31] 🚀 INICIANDO SERVICIOS DEL SISTEMA
+[2025-06-10 13:52:31] 📊 Iniciando dashboard local (puerto 8080)...
+[2025-06-10 13:52:33] ✅ Dashboard iniciado correctamente
+[2025-06-10 13:52:33] 📤 Iniciando upload server (puerto 5001)...
+[2025-06-10 13:52:35] ✅ Upload server iniciado correctamente
+[2025-06-10 13:52:36] 🤖 Verificando sistema de automatización...
+[2025-06-10 13:52:39] ❌ Error en sistema de automatización
+[2025-06-10 13:52:39] 🎯 TODOS LOS SERVICIOS INICIADOS
+[2025-06-10 13:52:56] 💾 EJECUTANDO BACKUP COMPLETO
+[2025-06-10 13:52:56] ✅ Backup completado exitosamente
+[2025-06-10 13:53:03] 🧪 EJECUTANDO TESTING COMPLETO
+[2025-06-10 13:53:03] ✅ Archivo encontrado: automation_7x_system.py
+[2025-06-10 13:53:03] ✅ Archivo encontrado: auto_backup.sh
+[2025-06-10 13:53:03] ✅ Archivo encontrado: components_memory_system.sh
+[2025-06-10 13:53:03] 📁 Componentes encontrados:       10/10
+[2025-06-10 13:53:03] 🤖 Testing sistema de automatización...
+[2025-06-10 13:53:04] ✅ Sistema de automatización funcionando
+[2025-06-10 13:53:04] ✅ Configuración encontrada
+[2025-06-10 13:53:04] 🎯 TESTING COMPLETADO
+[2025-06-10 13:53:27] 👋 Sistema de control finalizado

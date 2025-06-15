@@ -1,0 +1,16 @@
+2025-06-13 01:00:00,674 - INFO - 🚀 SISTEMA DE AUTOMATIZACIÓN 7x/DÍA INICIADO
+2025-06-13 01:00:00,674 - INFO - Horarios programados: ['07:00', '10:00', '13:00', '16:00', '19:00', '22:00', '01:00']
+2025-06-13 01:00:00,674 - INFO - 🤖 INICIANDO CICLO DE AUTOMATIZACIÓN
+2025-06-13 01:00:00,773 - INFO - Encontrados 0 archivos nuevos
+2025-06-13 01:00:04,530 - INFO - Dashboard actualizado exitosamente
+2025-06-13 01:00:04,534 - ERROR - Excepción durante backup: [Errno 2] No such file or directory: '/Users/apple/hotel_dashboard_raci/auto_backup.sh'
+2025-06-13 01:00:04,534 - WARNING - Error en backup automático
+2025-06-13 01:00:04,534 - INFO - ✅ CICLO DE AUTOMATIZACIÓN COMPLETADO
+2025-06-13 07:00:00,861 - INFO - 🚀 SISTEMA DE AUTOMATIZACIÓN 7x/DÍA INICIADO
+2025-06-13 07:00:00,862 - INFO - Horarios programados: ['07:00', '10:00', '13:00', '16:00', '19:00', '22:00', '01:00']
+2025-06-13 07:00:00,862 - INFO - 🤖 INICIANDO CICLO DE AUTOMATIZACIÓN
+2025-06-13 07:00:00,908 - INFO - Encontrados 0 archivos nuevos
+2025-06-13 07:00:02,780 - INFO - Dashboard actualizado exitosamente
+2025-06-13 07:00:02,783 - ERROR - Excepción durante backup: [Errno 2] No such file or directory: '/Users/apple/hotel_dashboard_raci/auto_backup.sh'
+2025-06-13 07:00:02,783 - WARNING - Error en backup automático
+2025-06-13 07:00:02,783 - INFO - ✅ CICLO DE AUTOMATIZACIÓN COMPLETADO

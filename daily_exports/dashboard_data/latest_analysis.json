@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-06-10T00:21:09.716985",
+  "sources": {
+    "myhotel": {
+      "records": 5,
+      "file": "ejemplo_myhotel.csv"
+    },
+    "asksuite": {
+      "records": 3,
+      "file": "ejemplo_asksuite.json"
+    },
+    "bac_colones": {
+      "records": 4,
+      "file": "ejemplo_bac_colones.csv"
+    }
+  },
+  "summary": {
+    "files_processed": 3,
+    "active_sources": 3
+  }
+}

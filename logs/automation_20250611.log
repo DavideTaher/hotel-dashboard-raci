@@ -1,0 +1,29 @@
+2025-06-11 01:00:00,553 - INFO - 🚀 SISTEMA DE AUTOMATIZACIÓN 7x/DÍA INICIADO
+2025-06-11 01:00:00,554 - INFO - Horarios programados: ['07:00', '10:00', '13:00', '16:00', '19:00', '22:00', '01:00']
+2025-06-11 01:00:00,554 - INFO - 🤖 INICIANDO CICLO DE AUTOMATIZACIÓN
+2025-06-11 01:00:00,578 - INFO - Encontrados 131 archivos nuevos
+2025-06-11 01:00:00,578 - INFO - Procesando 131 archivos nuevos
+2025-06-11 01:00:05,162 - INFO - Procesamiento completado exitosamente
+2025-06-11 01:00:06,480 - INFO - Dashboard actualizado exitosamente
+2025-06-11 01:00:06,627 - INFO - Backup de memoria completado
+2025-06-11 01:00:06,627 - INFO - ✅ CICLO DE AUTOMATIZACIÓN COMPLETADO
+2025-06-11 07:00:01,148 - INFO - 🚀 SISTEMA DE AUTOMATIZACIÓN 7x/DÍA INICIADO
+2025-06-11 07:00:01,148 - INFO - Horarios programados: ['07:00', '10:00', '13:00', '16:00', '19:00', '22:00', '01:00']
+2025-06-11 07:00:01,149 - INFO - 🤖 INICIANDO CICLO DE AUTOMATIZACIÓN
+2025-06-11 07:00:01,204 - INFO - Encontrados 124 archivos nuevos
+2025-06-11 07:00:01,204 - INFO - Procesando 124 archivos nuevos
+2025-06-11 07:00:04,033 - INFO - Procesamiento completado exitosamente
+2025-06-11 07:00:05,498 - INFO - Dashboard actualizado exitosamente
+2025-06-11 07:00:05,501 - ERROR - Excepción durante backup: [Errno 2] No such file or directory: '/Users/apple/hotel_dashboard_raci/auto_backup.sh'
+2025-06-11 07:00:05,501 - WARNING - Error en backup automático
+2025-06-11 07:00:05,501 - INFO - ✅ CICLO DE AUTOMATIZACIÓN COMPLETADO
+2025-06-11 10:00:00,889 - INFO - 🚀 SISTEMA DE AUTOMATIZACIÓN 7x/DÍA INICIADO
+2025-06-11 10:00:00,890 - INFO - Horarios programados: ['07:00', '10:00', '13:00', '16:00', '19:00', '22:00', '01:00']
+2025-06-11 10:00:00,890 - INFO - 🤖 INICIANDO CICLO DE AUTOMATIZACIÓN
+2025-06-11 10:00:00,926 - INFO - Encontrados 124 archivos nuevos
+2025-06-11 10:00:00,926 - INFO - Procesando 124 archivos nuevos
+2025-06-11 10:00:02,363 - INFO - Procesamiento completado exitosamente
+2025-06-11 10:00:03,076 - INFO - Dashboard actualizado exitosamente
+2025-06-11 10:00:03,079 - ERROR - Excepción durante backup: [Errno 2] No such file or directory: '/Users/apple/hotel_dashboard_raci/auto_backup.sh'
+2025-06-11 10:00:03,079 - WARNING - Error en backup automático
+2025-06-11 10:00:03,079 - INFO - ✅ CICLO DE AUTOMATIZACIÓN COMPLETADO

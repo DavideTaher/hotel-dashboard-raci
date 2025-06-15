@@ -1,0 +1,24 @@
+{
+  "run_schedule": ["07:00", "10:00", "13:00", "16:00", "19:00", "22:00", "01:00"],
+  "check_interval": 3600,
+  "max_file_age": 24,
+  "enable_notifications": true,
+  "admin_email": "gerencia@terrazasdelcaribe.com",
+  "dashboard_url": "http://localhost:8080",
+  "upload_server_port": 5001,
+  "auto_backup": true,
+  "component_memory_update": true,
+  "sources": [
+    "easyfrontdesk",
+    "myhotel", 
+    "bcr_dolares",
+    "fideltour",
+    "asksuite",
+    "whatsapp",
+    "raci_updates",
+    "manual_uploads",
+    "system_logs",
+    "user_activity",
+    "performance_metrics"
+  ]
+}

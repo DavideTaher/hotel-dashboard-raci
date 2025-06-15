@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2025-06-09T10:30:00",
+    "conversation_id": "conv_001",
+    "user_message": "Quiero hacer una reserva para este fin de semana",
+    "bot_response": "¡Perfecto! Te ayudo con tu reserva",
+    "intent": "reservation",
+    "sentiment": "positive",
+    "resolved": true
+  },
+  {
+    "timestamp": "2025-06-09T11:15:00", 
+    "conversation_id": "conv_002",
+    "user_message": "¿Tienen spa y qué servicios incluye?",
+    "bot_response": "Sí, tenemos spa completo con masajes, sauna y jacuzzi",
+    "intent": "services_inquiry",
+    "sentiment": "neutral",
+    "resolved": true
+  },
+  {
+    "timestamp": "2025-06-09T14:20:00",
+    "conversation_id": "conv_003", 
+    "user_message": "Necesito cancelar mi reserva urgente",
+    "bot_response": "Entiendo tu situación, te ayudo con la cancelación",
+    "intent": "cancellation",
+    "sentiment": "negative",
+    "resolved": false
+  }
+]
