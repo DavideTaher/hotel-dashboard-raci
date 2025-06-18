@@ -1,26 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import {
   Box, Grid, Paper, Typography, Card, CardContent,
-  Button, Avatar, Chip, LinearProgress, Alert, CircularProgress
+  Button, Avatar, Chip, LinearProgress, Alert, CircularProgress,
+  Select, MenuItem, FormControl, InputLabel, Divider, IconButton, Tooltip
 } from '@mui/material';
 import {
   Business, People, Assessment, Notifications,
-  TrendingUp, TrendingDown, Schedule, CheckCircle, Refresh
+  TrendingUp, TrendingDown, Schedule, CheckCircle, Refresh,
+  NetworkCheck, Security, Settings, Router, SignalWifi4Bar,
+  Warning, Error as ErrorIcon, Wifi
 } from '@mui/icons-material';
 import axios from 'axios';
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [recentActivity, setRecentActivity] = useState([]);
+  const [networkStatus, setNetworkStatus] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [networkLoading, setNetworkLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userRole, setUserRole] = useState('manager'); // Sistema RACI
 
   const API_BASE = 'https://hotel-dashboard-api-188421734166.us-central1.run.app/api';
+  const NETWORK_API = 'https://network-monitor-dot-hotel-terrazas-ai-system.uc.r.appspot.com/api/network/status';
+
+  // Definizione ruoli RACI per Network Status
+  const RACI_ROLES = {
+    'admin': { 
+      access: true, 
+      label: 'Amministratore Sistema', 
+      color: '#f44336',
+      permissions: ['network', 'system', 'users', 'reports']
+    },
+    'it-manager': { 
+      access: true, 
+      label: 'IT Manager', 
+      color: '#2196f3',
+      permissions: ['network', 'system', 'reports']
+    },
+    'maintenance': { 
+      access: true, 
+      label: 'Manutenzione', 
+      color: '#ff9800',
+      permissions: ['network', 'reports']
+    },
+    'manager': { 
+      access: false, 
+      label: 'Gerencia', 
+      color: '#4caf50',
+      permissions: ['business', 'reports']
+    },
+    'reception': { 
+      access: false, 
+      label: 'Recepción', 
+      color: '#9c27b0',
+      permissions: ['business']
+    },
+    'viewer': { 
+      access: false, 
+      label: 'Vista General', 
+      color: '#607d8b',
+      permissions: []
+    }
+  };
 
   useEffect(() => {
     fetchDashboardData();
-    // Actualizar cada 30 segundos
-    const interval = setInterval(fetchDashboardData, 30000);
+    fetchNetworkStatus();
+    
+    const interval = setInterval(() => {
+      fetchDashboardData();
+      fetchNetworkStatus();
+    }, 5 * 60 * 1000); // Refresh every 5 minutes
+    
     return () => clearInterval(interval);
   }, []);
 
@@ -29,7 +81,6 @@ const Dashboard = () => {
       setLoading(true);
       setError(null);
 
-      // Obtener estadísticas y actividad reciente en paralelo
       const [statsResponse, activityResponse] = await Promise.all([
         axios.get(`${API_BASE}/dashboard/stats`),
         axios.get(`${API_BASE}/whatsapp/recent?hours=24`)
@@ -37,12 +88,27 @@ const Dashboard = () => {
 
       setStats(statsResponse.data);
       setRecentActivity(activityResponse.data.messages || []);
-      
     } catch (err) {
-      setError('Error conectando con el backend: ' + err.message);
       console.error('Error fetching dashboard data:', err);
+      setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchNetworkStatus = async () => {
+    try {
+      setNetworkLoading(true);
+      const response = await axios.get(NETWORK_API);
+      setNetworkStatus(response.data);
+    } catch (err) {
+      console.error('Error fetching network status:', err);
+      setNetworkStatus({ 
+        current: { status: 'UNKNOWN', issues: { critical: 0, warning: 0 } },
+        summary: { status: 'UNKNOWN', latency: 0, issues: { critical: 0, warning: 0 } }
+      });
+    } finally {
+      setNetworkLoading(false);
     }
   };
 
@@ -62,18 +128,22 @@ const Dashboard = () => {
           <Avatar sx={{ bgcolor: color, mr: 2 }}>
             <Icon />
           </Avatar>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="h6" component="div">
             {title}
           </Typography>
         </Box>
-        <Typography variant="h4" sx={{ fontWeight: 'bold', color }}>
+        <Typography variant="h4" component="div" sx={{ mb: 1 }}>
           {value}
         </Typography>
-        {trend !== undefined && (
-          <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-            {trend > 0 ? <TrendingUp color="success" /> : <TrendingDown color="error" />}
-            <Typography variant="body2" sx={{ ml: 1 }}>
-              {Math.abs(trend)}% desde ayer
+        {trend && (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {trend > 0 ? (
+              <TrendingUp sx={{ color: 'success.main', mr: 1 }} />
+            ) : (
+              <TrendingDown sx={{ color: 'error.main', mr: 1 }} />
+            )}
+            <Typography variant="body2" color="text.secondary">
+              {Math.abs(trend)}% vs anterior
             </Typography>
           </Box>
         )}
@@ -81,7 +151,205 @@ const Dashboard = () => {
     </Card>
   );
 
-  if (loading && !stats) {
+  // Componente NetworkStatus integrato con Material-UI
+  const NetworkStatusCard = () => {
+    const hasAccess = RACI_ROLES[userRole]?.permissions.includes('network');
+    
+    if (!hasAccess) {
+      return (
+        <Card sx={{ height: '100%' }}>
+          <CardContent sx={{ textAlign: 'center', py: 4 }}>
+            <Security sx={{ fontSize: 48, color: 'text.disabled', mb: 2 }} />
+            <Typography variant="h6" color="text.secondary" gutterBottom>
+              Estado de Red - Acceso Restringido
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Tu rol ({RACI_ROLES[userRole]?.label}) no tiene acceso a información de red.
+            </Typography>
+            <Chip 
+              label={RACI_ROLES[userRole]?.label} 
+              size="small" 
+              sx={{ 
+                mt: 2,
+                bgcolor: RACI_ROLES[userRole]?.color,
+                color: 'white'
+              }} 
+            />
+          </CardContent>
+        </Card>
+      );
+    }
+
+    if (networkLoading) {
+      return (
+        <Card sx={{ height: '100%' }}>
+          <CardContent sx={{ textAlign: 'center', py: 4 }}>
+            <CircularProgress sx={{ mb: 2 }} />
+            <Typography variant="h6">Cargando estado de red...</Typography>
+          </CardContent>
+        </Card>
+      );
+    }
+
+    const getStatusColor = (status) => {
+      switch(status) {
+        case 'CRITICAL': return '#f44336';
+        case 'WARNING': return '#ff9800';
+        case 'HEALTHY': return '#4caf50';
+        default: return '#9e9e9e';
+      }
+    };
+
+    const getStatusIcon = (status) => {
+      switch(status) {
+        case 'CRITICAL': return <ErrorIcon />;
+        case 'WARNING': return <Warning />;
+        case 'HEALTHY': return <SignalWifi4Bar />;
+        default: return <Wifi />;
+      }
+    };
+
+    const currentStatus = networkStatus?.current || {};
+    const summary = networkStatus?.summary || {};
+
+    return (
+      <Card sx={{ height: '100%' }}>
+        <CardContent>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <NetworkCheck sx={{ mr: 2, color: '#2196f3' }} />
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Estado de Red del Hotel
+            </Typography>
+            <Chip 
+              label={RACI_ROLES[userRole]?.label} 
+              size="small" 
+              sx={{ 
+                bgcolor: RACI_ROLES[userRole]?.color,
+                color: 'white'
+              }} 
+            />
+            <Tooltip title="Actualizar">
+              <IconButton onClick={fetchNetworkStatus} size="small" sx={{ ml: 1 }}>
+                <Refresh />
+              </IconButton>
+            </Tooltip>
+          </Box>
+
+          <Divider sx={{ mb: 2 }} />
+
+          {/* Estado Principal */}
+          <Box sx={{ 
+            bgcolor: getStatusColor(summary.status) + '20',
+            border: `2px solid ${getStatusColor(summary.status)}`,
+            borderRadius: 2,
+            p: 2,
+            mb: 2
+          }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Avatar sx={{ bgcolor: getStatusColor(summary.status), mr: 2 }}>
+                  {getStatusIcon(summary.status)}
+                </Avatar>
+                <Box>
+                  <Typography variant="h5" sx={{ fontWeight: 'bold', color: getStatusColor(summary.status) }}>
+                    {summary.status || 'UNKNOWN'}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Último update: {summary.lastUpdate ? new Date(summary.lastUpdate).toLocaleTimeString() : 'N/A'}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+
+          {/* Métricas de Red */}
+          <Grid container spacing={2} sx={{ mb: 2 }}>
+            <Grid item xs={4}>
+              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'grey.50' }}>
+                <Typography variant="body2" color="text.secondary">
+                  Latencia
+                </Typography>
+                <Typography variant="h6" sx={{ 
+                  color: summary.latency > 50 ? 'error.main' : 
+                         summary.latency > 30 ? 'warning.main' : 'success.main'
+                }}>
+                  {summary.latency || 0} ms
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={4}>
+              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'grey.50' }}>
+                <Typography variant="body2" color="text.secondary">
+                  Críticos
+                </Typography>
+                <Typography variant="h6" sx={{ 
+                  color: (summary.issues?.critical || 0) > 0 ? 'error.main' : 'success.main'
+                }}>
+                  {summary.issues?.critical || 0}
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={4}>
+              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'grey.50' }}>
+                <Typography variant="body2" color="text.secondary">
+                  Warnings
+                </Typography>
+                <Typography variant="h6" sx={{ 
+                  color: (summary.issues?.warning || 0) > 0 ? 'warning.main' : 'success.main'
+                }}>
+                  {summary.issues?.warning || 0}
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+
+          {/* Alertas */}
+          {(summary.issues?.critical || 0) > 0 && (
+            <Alert severity="error" sx={{ mb: 1 }}>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                {summary.issues.critical} problema{summary.issues.critical > 1 ? 's' : ''} crítico{summary.issues.critical > 1 ? 's' : ''} detectado{summary.issues.critical > 1 ? 's' : ''}
+              </Typography>
+              <Typography variant="caption">
+                Revisar console UniFi para detalles
+              </Typography>
+            </Alert>
+          )}
+
+          {(summary.issues?.warning || 0) > 0 && (summary.issues?.critical || 0) === 0 && (
+            <Alert severity="warning" sx={{ mb: 1 }}>
+              <Typography variant="body2">
+                {summary.issues.warning} warning{summary.issues.warning > 1 ? 's' : ''} de red detectado{summary.issues.warning > 1 ? 's' : ''}
+              </Typography>
+            </Alert>
+          )}
+
+          {/* Enlaces rápidos */}
+          <Box sx={{ display: 'flex', gap: 1, mt: 2 }}>
+            <Button 
+              size="small" 
+              variant="outlined"
+              startIcon={<Router />}
+              href="https://unifi.ui.com" 
+              target="_blank"
+            >
+              UniFi Console
+            </Button>
+            <Button 
+              size="small" 
+              variant="outlined"
+              startIcon={<Assessment />}
+              href="https://network-monitor-dot-hotel-terrazas-ai-system.uc.r.appspot.com" 
+              target="_blank"
+            >
+              Monitor
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
+    );
+  };
+
+  if (loading) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
         <CircularProgress size={60} />
@@ -106,37 +374,61 @@ const Dashboard = () => {
               🏨 Hotel Terrazas del Caribe - Dashboard RACI
             </Typography>
             <Typography variant="subtitle1" sx={{ color: 'white', opacity: 0.9 }}>
-              Sistema de Gestión Operacional en Tiempo Real
+              Sistema de gestión integral con monitoreo de red
             </Typography>
-            {stats && (
-              <Typography variant="body2" sx={{ color: 'white', opacity: 0.7, mt: 1 }}>
-                Última actualización: {new Date(stats.lastUpdate).toLocaleString()}
-              </Typography>
-            )}
           </Box>
-          <Button
-            variant="contained"
-            startIcon={<Refresh />}
-            onClick={fetchDashboardData}
-            sx={{ bgcolor: 'white', color: 'primary.main' }}
-            disabled={loading}
-          >
-            Actualizar
-          </Button>
+          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            {/* Selector de Rol RACI */}
+            <FormControl size="small" sx={{ minWidth: 200 }}>
+              <InputLabel sx={{ color: 'white' }}>Rol de Usuario</InputLabel>
+              <Select
+                value={userRole}
+                onChange={(e) => setUserRole(e.target.value)}
+                sx={{ 
+                  color: 'white',
+                  '& .MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
+                  '& .MuiSvgIcon-root': { color: 'white' }
+                }}
+              >
+                {Object.entries(RACI_ROLES).map(([role, config]) => (
+                  <MenuItem key={role} value={role}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Box 
+                        sx={{ 
+                          width: 12, 
+                          height: 12, 
+                          borderRadius: '50%', 
+                          bgcolor: config.color 
+                        }} 
+                      />
+                      {config.label}
+                    </Box>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Button
+              variant="outlined"
+              startIcon={<Refresh />}
+              onClick={() => {
+                fetchDashboardData();
+                fetchNetworkStatus();
+              }}
+              sx={{ 
+                color: 'white', 
+                borderColor: 'white',
+                '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' }
+              }}
+            >
+              Actualizar
+            </Button>
+          </Box>
         </Box>
       </Paper>
 
-      {/* Error Alert */}
       {error && (
-        <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError(null)}>
-          {error}
-        </Alert>
-      )}
-
-      {/* Alertas */}
-      {stats && stats.pendingAlerts > 0 && (
-        <Alert severity="warning" sx={{ mb: 3 }}>
-          Tienes {stats.pendingAlerts} alertas pendientes que requieren atención
+        <Alert severity="error" sx={{ mb: 3 }}>
+          Error al cargar datos: {error}
         </Alert>
       )}
 
@@ -182,8 +474,13 @@ const Dashboard = () => {
       )}
 
       <Grid container spacing={3}>
+        {/* Estado de Red del Hotel - NUEVA SECCIÓN */}
+        <Grid item xs={12} lg={4}>
+          <NetworkStatusCard />
+        </Grid>
+
         {/* Eficiencia por Departamento */}
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} lg={4}>
           <Paper sx={{ p: 3, height: '400px' }}>
             <Typography variant="h6" gutterBottom>
               Eficiencia por Departamento
@@ -203,8 +500,8 @@ const Dashboard = () => {
                     height: 8,
                     borderRadius: 4,
                     '& .MuiLinearProgress-bar': {
-                      backgroundColor: dept.color
-                    }
+                      backgroundColor: dept.color,
+                    },
                   }}
                 />
               </Box>
@@ -212,8 +509,8 @@ const Dashboard = () => {
           </Paper>
         </Grid>
 
-        {/* Actividad Reciente REAL de WhatsApp */}
-        <Grid item xs={12} md={6}>
+        {/* Actividad Reciente */}
+        <Grid item xs={12} lg={4}>
           <Paper sx={{ p: 3, height: '400px' }}>
             <Typography variant="h6" gutterBottom>
               Actividad Reciente WhatsApp (DATOS REALES)
@@ -228,8 +525,7 @@ const Dashboard = () => {
                       mb: 1, 
                       bgcolor: 'grey.50', 
                       borderRadius: 1,
-                      borderLeft: 4,
-                      borderLeftColor: 'primary.main'
+                      borderLeft: '4px solid #2196F3'
                     }}
                   >
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
@@ -252,7 +548,7 @@ const Dashboard = () => {
                   </Box>
                 ))
               ) : (
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mt: 4 }}>
                   No hay actividad reciente disponible
                 </Typography>
               )}
@@ -265,7 +561,9 @@ const Dashboard = () => {
       <Paper sx={{ p: 2, mt: 3, bgcolor: stats ? 'success.light' : 'error.light' }}>
         <Typography variant="body2" sx={{ textAlign: 'center' }}>
           🔗 Estado Backend: {stats ? '✅ Conectado' : '❌ Desconectado'} | 
-          📱 WhatsApp: {recentActivity.length > 0 ? '✅ Datos disponibles' : '⚠️ Sin datos'}
+          📱 WhatsApp: {recentActivity.length > 0 ? '✅ Datos disponibles' : '⚠️ Sin datos'} |
+          🌐 Red: {networkStatus?.summary?.status || 'Verificando...'} |
+          🔐 Rol Activo: {RACI_ROLES[userRole]?.label}
         </Typography>
       </Paper>
     </Box>
