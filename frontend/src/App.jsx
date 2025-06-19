@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   ThemeProvider, createTheme, CssBaseline, AppBar, Toolbar, 
   Typography, Button, Box, Container 
@@ -14,6 +15,7 @@ import RACIMatrix from './components/RACIMatrix';
 import Analytics from './components/Analytics';
 import PMSIntegration from './components/PMSIntegration';
 import NotificationCenter from './components/NotificationCenter';
+import LanguageSelector from './components/LanguageSelector';
 
 const theme = createTheme({
   palette: {
@@ -23,37 +25,64 @@ const theme = createTheme({
 });
 
 function App() {
+  const { t } = useTranslation();
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
         <AppBar position="sticky">
           <Toolbar>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              🏨 Hotel Terrazas Dashboard
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              {t('app.title')}
             </Typography>
-            <Button color="inherit" component={Link} to="/" startIcon={<DashboardIcon />}>
-              Dashboard
-            </Button>
-            <Button color="inherit" component={Link} to="/raci" startIcon={<AccountTree />}>
-              Matriz RACI
-            </Button>
-            <Button color="inherit" component={Link} to="/analytics" startIcon={<AnalyticsIcon />}>
-              Analytics
-            </Button>
-            <Button color="inherit" component={Link} to="/pms" startIcon={<IntegrationInstructions />}>
-              PMS
-            </Button>
-            <NotificationCenter />
+            
+            <Box sx={{ display: 'flex', gap: 2, mr: 2 }}>
+              <Button 
+                color="inherit" 
+                component={Link} 
+                to="/"
+                startIcon={<DashboardIcon />}
+              >
+                {t('navigation.dashboard')}
+              </Button>
+              <Button 
+                color="inherit" 
+                component={Link} 
+                to="/raci"
+                startIcon={<AccountTree />}
+              >
+                {t('navigation.raci')}
+              </Button>
+              <Button 
+                color="inherit" 
+                component={Link} 
+                to="/analytics"
+                startIcon={<AnalyticsIcon />}
+              >
+                {t('navigation.analytics')}
+              </Button>
+              <Button 
+                color="inherit" 
+                component={Link} 
+                to="/pms"
+                startIcon={<IntegrationInstructions />}
+              >
+                {t('navigation.pms')}
+              </Button>
+            </Box>
+
+            <LanguageSelector variant="menu" />
           </Toolbar>
         </AppBar>
 
-        <Container maxWidth="xl" sx={{ py: 2 }}>
+        <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/raci" element={<RACIMatrix />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/pms" element={<PMSIntegration />} />
+            <Route path="/notifications" element={<NotificationCenter />} />
           </Routes>
         </Container>
       </Router>

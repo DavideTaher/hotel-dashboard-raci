@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from 'react';
 import {
   Box, Paper, Typography, Grid, Card, CardContent, Button,
@@ -12,6 +13,7 @@ import {
 } from '@mui/icons-material';
 
 const Analytics = () => {
+  const { t } = useTranslation();
   const [timeRange, setTimeRange] = useState('7d');
   const [loading, setLoading] = useState(false);
   const [analyticsData, setAnalyticsData] = useState(null);
@@ -122,7 +124,7 @@ const Analytics = () => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Box>
             <Typography variant="h4" sx={{ color: 'white', mb: 1 }}>
-              📊 Analytics Avanzado - Hotel Terrazas
+              {t("analytics.title")}
             </Typography>
             <Typography variant="subtitle1" sx={{ color: 'white', opacity: 0.9 }}>
               Análisis de rendimiento y tendencias operacionales

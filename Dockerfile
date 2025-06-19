@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install flask gunicorn
+RUN pip install flask gunicorn requests
 
 ENV PORT=8080
 

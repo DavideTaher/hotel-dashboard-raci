@@ -1,0 +1,127 @@
+{
+  "app": {
+    "title": "Hotel Terrazas del Caribe",
+    "subtitle": "Dashboard de Gestión Inteligente"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "raci": "Matrix RACI",
+    "analytics": "Analytics",
+    "pms": "Integración PMS",
+    "notifications": "Notificaciones"
+  },
+  "dashboard": {
+    "title": "Dashboard Principal",
+    "welcome": "Bienvenido al sistema de gestión",
+    "overview": "Resumen General",
+    "networkStatus": "Estado de la Red",
+    "recentActivity": "Actividad Reciente",
+    "systemMetrics": "Métricas del Sistema"
+  },
+  "metrics": {
+    "departments": "Departamentos",
+    "activeProcesses": "Procesos Activos",
+    "messages24h": "Mensajes 24h",
+    "teamSentiment": "Sentimiento Equipo",
+    "refresh": "ACTUALIZAR",
+    "vsPrevious": "vs anterior"
+  },
+  "networkStatus": {
+    "title": "Estado de la Red",
+    "hotelTitle": "Estado de Red del Hotel",
+    "loading": "Cargando estado de red...",
+    "error": "Falló al cargar estado de red",
+    "critical": "CRÍTICO",
+    "warning": "ADVERTENCIA",
+    "healthy": "SALUDABLE",
+    "criticalIssues": "¡Problemas críticos de red detectados!",
+    "warningIssues": "Advertencias de red detectadas"
+  },
+  "dynamicMessages": {
+    "deviceStates": {
+      "online": "en línea",
+      "offline": "desconectado",
+      "connected": "conectado", 
+      "disconnected": "desconectado",
+      "active": "activo",
+      "inactive": "inactivo",
+      "healthy": "saludable",
+      "unhealthy": "con problemas"
+    },
+    "networkMessages": {
+      "bandwidth_limited": "ancho de banda limitado",
+      "device_unreachable": "dispositivo inaccesible",
+      "connection_timeout": "tiempo de conexión agotado",
+      "smart_queues_active": "Smart Queues activo",
+      "limiting_bandwidth": "limitando ancho de banda",
+      "high_interference": "alta interferencia",
+      "channel_congestion": "congestión de canal"
+    },
+    "commonErrors": {
+      "authentication_failed": "falló la autenticación",
+      "network_unreachable": "red inaccesible",
+      "dns_resolution_failed": "falló resolución DNS",
+      "certificate_expired": "certificado expirado"
+    }
+  },
+  "raci": {
+    "title": "🏨 Matriz RACI - Hotel Terrazas del Caribe",
+    "processes": {
+      "checkinout": "Proceso Check-in/out",
+      "roomCleaning": "Limpieza de Habitaciones", 
+      "guestComplaints": "Quejas de Huéspedes"
+    },
+    "roles": {
+      "admin": "Administrador Sistema",
+      "itManager": "Gerente IT", 
+      "maintenance": "Mantenimiento",
+      "manager": "Gerencia",
+      "staff": "Personal",
+      "guest": "Huésped"
+    },
+    "permissions": {
+      "network": "Red",
+      "system": "Sistema", 
+      "users": "Usuarios",
+      "reports": "Reportes",
+      "maintenance": "Mantenimiento"
+    },
+    "legend": {
+      "responsible": "R - Responsable",
+      "accountable": "A - Aprobador", 
+      "consulted": "C - Consultado",
+      "informed": "I - Informado"
+    }
+  },
+  "analytics": {
+    "title": "📊 Analytics Avanzado - Hotel Terrazas",
+    "metrics": {
+      "customerSatisfaction": "Satisfacción del Cliente",
+      "occupancyRate": "Tasa de Ocupación",
+      "revenue": "Ingresos", 
+      "averageStay": "Estancia Promedio"
+    }
+  },
+  "network": {
+    "status": "Estado de Red",
+    "connected": "Conectado",
+    "disconnected": "Desconectado", 
+    "critical": "CRÍTICO",
+    "warning": "ADVERTENCIA",
+    "ok": "OK",
+    "loading": "Cargando estado de red...",
+    "error": "Error al cargar datos de red",
+    "refresh": "Actualizar",
+    "details": "Ver Detalles",
+    "problems": "problemas detectados",
+    "devices": "dispositivos", 
+    "channels": "canales"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "refresh": "Actualizar",
+    "close": "Cerrar"
+  }
+}

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Box, Grid, Paper, Typography, Card, CardContent,
   Button, Avatar, Chip, LinearProgress, Alert, CircularProgress,
@@ -13,6 +14,7 @@ import {
 import axios from 'axios';
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const [stats, setStats] = useState(null);
   const [recentActivity, setRecentActivity] = useState([]);
   const [networkStatus, setNetworkStatus] = useState(null);
@@ -22,7 +24,7 @@ const Dashboard = () => {
   const [userRole, setUserRole] = useState('manager'); // Sistema RACI
 
   const API_BASE = 'https://hotel-dashboard-api-188421734166.us-central1.run.app/api';
-  const NETWORK_API = 'https://network-monitor-dot-hotel-terrazas-ai-system.uc.r.appspot.com/api/network/status';
+  const NETWORK_API = '/api/network/status';
 
   // Definizione ruoli RACI per Network Status
   const RACI_ROLES = {
@@ -46,7 +48,7 @@ const Dashboard = () => {
     },
     'manager': { 
       access: false, 
-      label: 'Gerencia', 
+      label: t('raci.roles.manager'), 
       color: '#4caf50',
       permissions: ['business', 'reports']
     },
@@ -143,7 +145,7 @@ const Dashboard = () => {
               <TrendingDown sx={{ color: 'error.main', mr: 1 }} />
             )}
             <Typography variant="body2" color="text.secondary">
-              {Math.abs(trend)}% vs anterior
+              {Math.abs(trend)}% {t("metrics.vsPrevious")}
             </Typography>
           </Box>
         )}
@@ -437,7 +439,7 @@ const Dashboard = () => {
         <Grid container spacing={3} sx={{ mb: 3 }}>
           <Grid item xs={12} sm={6} md={3}>
             <MetricCard
-              title="Departamentos"
+              title={t('metrics.departments')}
               value={stats.totalDepartments}
               icon={Business}
               color="#2196F3"
@@ -445,7 +447,7 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <MetricCard
-              title="Procesos Activos"
+              title={t('metrics.activeProcesses')}
               value={stats.activeProcesses}
               icon={Assessment}
               color="#4CAF50"
@@ -454,7 +456,7 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <MetricCard
-              title="Mensajes 24h"
+              title={t('metrics.messages24h')}
               value={stats.totalMessages24h || 0}
               icon={CheckCircle}
               color="#FF9800"
@@ -463,7 +465,7 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <MetricCard
-              title="Sentimiento Equipo"
+              title={t('metrics.teamSentiment')}
               value={`${Math.round((stats.sentimentScore || 0.5) * 100)}%`}
               icon={People}
               color="#9C27B0"

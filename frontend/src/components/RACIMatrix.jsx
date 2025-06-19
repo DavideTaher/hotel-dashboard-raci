@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import {
@@ -12,6 +13,7 @@ import {
 } from '@mui/icons-material';
 
 const RACIMatrix = () => {
+  const { t } = useTranslation();
   const [departments, setDepartments] = useState([
     'Front Office', 'Housekeeping', 'F&B', 'Mantenimiento',
     'RRHH', 'Finanzas', 'Seguridad', 'IT',
@@ -295,7 +297,7 @@ const RACIMatrix = () => {
       <Box sx={{ p: 3 }}>
         <Paper sx={{ p: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
           <Typography variant="h4" sx={{ color: 'white', mb: 2 }}>
-            🏨 Matriz RACI - Hotel Terrazas del Caribe
+            {t("raci.title")}
           </Typography>
           
           <Grid container spacing={2} alignItems="center">

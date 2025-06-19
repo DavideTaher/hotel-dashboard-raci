@@ -1,0 +1,20 @@
+{
+  "name": "unifi-network-monitor",
+  "version": "1.0.0",
+  "description": "UniFi Network Monitor for Hotel Terrazas",
+  "main": "start-monitor.js",
+  "scripts": {
+    "start": "node start-monitor.js",
+    "test": "node test-without-email.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.13",
+    "node-schedule": "^2.1.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
