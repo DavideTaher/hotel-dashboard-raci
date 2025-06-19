@@ -1,0 +1,23 @@
+steps:
+  # Build dell'immagine
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/hotel-terrazas-raci', '.']
+  
+  # Push dell'immagine
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/hotel-terrazas-raci']
+  
+  # Deploy su Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'hotel-terrazas-raci'
+      - '--image=gcr.io/$PROJECT_ID/hotel-terrazas-raci'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+
+images:
+  - 'gcr.io/$PROJECT_ID/hotel-terrazas-raci'
