@@ -1,0 +1,8 @@
+2025-06-16 22:00:00,568 - INFO - 🚀 SISTEMA DE AUTOMATIZACIÓN 7x/DÍA INICIADO
+2025-06-16 22:00:00,569 - INFO - Horarios programados: ['07:00', '10:00', '13:00', '16:00', '19:00', '22:00', '01:00']
+2025-06-16 22:00:00,569 - INFO - 🤖 INICIANDO CICLO DE AUTOMATIZACIÓN
+2025-06-16 22:00:00,613 - INFO - Encontrados 0 archivos nuevos
+2025-06-16 22:00:03,315 - INFO - Dashboard actualizado exitosamente
+2025-06-16 22:00:03,318 - ERROR - Excepción durante backup: [Errno 2] No such file or directory: '/Users/apple/hotel_dashboard_raci/auto_backup.sh'
+2025-06-16 22:00:03,319 - WARNING - Error en backup automático
+2025-06-16 22:00:03,319 - INFO - ✅ CICLO DE AUTOMATIZACIÓN COMPLETADO

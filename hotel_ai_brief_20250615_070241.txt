@@ -1,0 +1,19 @@
+🏨 Utility Hotel Terrazas del Caribe caricate
+📂 Percorso progetto: /Users/apple/hotel_dashboard_raci
+🌐 API URL: https://hotel-terrazas-raci-188421734166.us-central1.run.app
+☁️ Progetto GCP: hotel-terrazas-ai-system
+📋 Comandi disponibili:
+  hopen      - Apre il progetto
+  hstatus    - Verifica lo stato
+  hbackup    - Crea un backup
+  htest      - Testa le API
+  hdeploy    - Esegue il deploy (hdeploy [nome-servizio])
+  hservices  - Mostra i servizi cloud disponibili
+  hstorage   - Verifica lo stato dello storage
+  hriepilogo - Mostra riepilogo completo
+  hset       - Cambia percorso progetto (es: hset ~/percorso/nuovo)
+✅ Funzioni aggiuntive caricate:
+  - htest - Test API (ora con endpoint dashboard)
+  - happ  - Apre l'applicazione nel browser
+  - hlogs - Mostra i log del servizio
+=== BRIEF SESSIONE AI - HOTEL TERRAZAS DEL CARIBE ===
